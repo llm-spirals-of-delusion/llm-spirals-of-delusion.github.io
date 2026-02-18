@@ -44,22 +44,22 @@
 
               <div class="is-size-5 publication-authors">
                 <span class="author-block">
-                  <a href="https://zeynep.me/">Zeynep Tufekci</a><sup>1</sup>,
+                  <a href="[PETER_URL]">Peter Kirgis</a><sup>1,*</sup>,
                 </span>
                 <span class="author-block">
-                  Peter Kirgis<sup>1</sup>,
+                  <a href="[BEN_URL]">Ben Hawriluk</a><sup>1,*</sup>,
                 </span>
                 <span class="author-block">
-                  Ben Hawriluk<sup>1</sup>,
+                  <a href="[SHERRIE_URL]">Sherrie Feng</a><sup>1</sup>,
                 </span>
                 <span class="author-block">
-                  Sherrie Feng<sup>1</sup>,
+                  <a href="[ASLAN_URL]">Aslan Bilimer</a><sup>2</sup>,
                 </span>
                 <span class="author-block">
-                  Aslan Bilimer<sup>2</sup>,
+                  <a href="[SAM_URL]">Sam Paech</a><sup>3</sup>,
                 </span>
                 <span class="author-block">
-                  Sam Paech<sup>3</sup>
+                  <a href="[ZEYNEP_URL]">Zeynep Tufekci</a><sup>1</sup>
                 </span>
               </div>
 
@@ -67,6 +67,10 @@
                 <span class="author-block"><sup>1</sup>Princeton University,</span>
                 <span class="author-block"><sup>2</sup>Phillips Exeter Academy,</span>
                 <span class="author-block"><sup>3</sup>Liquid AI</span>
+              </div>
+
+              <div class="is-size-6 publication-authors" style="margin-top: 8px;">
+                <span style="color: #666;">* Equal contribution</span>
               </div>
 
               <div class="column has-text-centered">
@@ -135,14 +139,14 @@
 
             <div class="content has-text-justified">
 
-              <h3 class="title is-4">1. API and Chat Interface Produce Dramatically Different Results</h3>
+              <h3 class="title is-4">1. The API and Chat Interface Produce Dramatically Different Results</h3>
               <p>
                 We observe large differences in performance between the API and chat interface environments. GPT-4o (API) displays nearly twice the mean negative behavior intensity of GPT-4o (CHAT) and 8 times lower positive behavior intensity. This shows that <strong>automated testing through the API isn't sufficient to assess the actual impact of chatbots in the real world</strong>.
               </p>
 
               <h3 class="title is-4">2. GPT-5 Shows Improvement Over GPT-4o in the Chat Interface</h3>
               <p>
-                When tested in the chat interface, GPT-5 displays more positive behaviors, like pushback, and fewer negative behaviors, like sychophance, than GPT-4o, showing that these behaviors are subject to influence by the companies.
+                When tested in the chat interface, GPT-5 displays more positive behaviors, like pushback, and fewer negative behaviors, like sycophancy, than GPT-4o, showing that these behaviors are subject to influence by the companies.
               </p>
 
               <h3 class="title is-4">3. Even Improved Models Display Substantial Negative Behaviors</h3>
@@ -865,6 +869,28 @@
             })();
             </script>
 
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why This Paper Matters -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3 has-text-centered">Why This Paper Matters for Policymakers, Model Developers, and Independent Evaluators</h2>
+            <div class="content has-text-justified">
+              <p>
+                We provide insight into a set of socially relevant model behaviors that intensify or mitigate dangerous or harmful patterns of AI usage, an important domain that the AI evaluation community has understudied. Second, and perhaps more importantly, our study illustrates a set of major challenges to behavioral audits of language models in general, including differences in the chat and API interfaces, differences in within-conversation temporal dynamics, and differences in the same "model" tested at different points in time.
+              </p>
+              <p>
+                Our study is the first paper, to our knowledge, that documents in such detail the importance of the model-interface pair in model behavior. We believe this is a striking finding that should give policymakers pause.
+              </p>
+              <p>
+                To address a problem, we believe we must first be able to define the problem. But if policymakers are relying on evaluations that do not reflect actual usage patterns of real humans, do not reflect socially relevant LLM behaviors, or if the ground they are trying to understand is constantly shifting underfoot, defining the problem becomes hard.
+              </p>
+            </div>
           </div>
         </div>
       </div>
