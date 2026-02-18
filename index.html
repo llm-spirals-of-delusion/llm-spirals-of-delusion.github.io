@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="description"
+      content="LLM Spirals of Delusion: A Benchmarking Audit Study of AI Chatbot Interfaces"
+    />
+    <meta name="keywords" content="LLM, Sycophancy, Delusion, Chatbot, Audit, Benchmark, ChatGPT" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      LLM Spirals of Delusion
+    </title>
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./static/css/bulma.min.css" />
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css" />
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css" />
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"
+    />
+    <link rel="stylesheet" href="./static/css/index.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+  </head>
+
+  <body>
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h1 class="title is-1 publication-title">
+                LLM Spirals of Delusion: A Benchmarking Audit Study of AI Chatbot Interfaces
+              </h1>
+
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  <a href="https://zeynep.me/">Zeynep Tufekci</a><sup>1</sup>,
+                </span>
+                <span class="author-block">
+                  Peter Kirgis<sup>1</sup>,
+                </span>
+                <span class="author-block">
+                  Ben Hawriluk<sup>1</sup>,
+                </span>
+                <span class="author-block">
+                  Sherrie Feng<sup>1</sup>,
+                </span>
+                <span class="author-block">
+                  Aslan Bilimer<sup>2</sup>,
+                </span>
+                <span class="author-block">
+                  Sam Paech<sup>3</sup>
+                </span>
+              </div>
+
+              <div class="is-size-5 publication-authors">
+                <span class="author-block"><sup>1</sup>Princeton University,</span>
+                <span class="author-block"><sup>2</sup>Phillips Exeter Academy,</span>
+                <span class="author-block"><sup>3</sup>Liquid AI</span>
+              </div>
+
+              <div class="column has-text-centered">
+                <div class="publication-links">
+                  <!-- PDF Link - update href when paper is public -->
+                  <span class="link-block">
+                    <a href="./static/paper.pdf"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                      <span>Paper</span>
+                    </a>
+                  </span>
+                  <!-- Code Link -->
+                  <span class="link-block">
+                    <a href="https://github.com/peterkirgis/spiral-bench"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon"><i class="fab fa-github"></i></span>
+                      <span>Code</span>
+                    </a>
+                  </span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Teaser Figure -->
+    <section class="hero teaser">
+      <div class="container is-max-desktop">
+        <div class="hero-body">
+          <img src="./static/images/full_human_comparison.png"
+               alt="Mean positive and negative behavior intensity per turn for ChatGPT-5 and ChatGPT-4o across chat interface and API conditions."
+               style="width: 100%;" />
+          <h2 class="subtitle has-text-centered">
+            <strong>Mean positive and negative behavior intensity per turn</strong> for ChatGPT-5 and ChatGPT-4o across chat interface and API conditions. Bars show the average of two human graders' scores across 14 scenarios (20 turns each). Error bars indicate 95% confidence intervals.
+          </h2>
+        </div>
+      </div>
+    </section>
+
+    <!-- Abstract -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <p>
+                People increasingly hold sustained, open-ended conversations with large language models (LLMs), sometimes even when their initial goal in coming to the model was information-seeking or productivity enhancement. Public reports and early studies suggest that, in all these settings, models can reinforce delusional or conspiratorial ideation or escalate toward stronger endorsement. We present an audit and benchmarking study that measures how different LLMs encourage, resist, or escalate disordered and conspiratorial thinking. We explicitly compare API outputs to user chat interfaces, like the ChatGPT desktop app or web interface, which is how people have conversations with these chatbots in real life but are almost never used for testing. In total, we run 56 20-turn conversations testing ChatGPT-4o and ChatGPT-5, via both the API and chat interface, and grade each conversation by two research assistants as well as by GPT-5. We document five results. First, we observe large differences in performance between the API and chat interface environments, showing that automated testing through the API isn't sufficient to assess the actual impact of chatbots in the real world. Second, when tested in the chat interface, as judged by our human and LLM graders, GPT-5 displays less sycophancy, escalation, and delusion reinforcement than GPT-4o, showing that these behaviors are subject to influence by the companies. Third, even when our graders assess nearly an identical intensity in a behavior across an entire conversation, we observe large differences in the trajectory of these behaviors within the conversation, demonstrating that trying to model real world social impacts from LLMs requires multi-turn evaluation and particular attention to temporal dynamics. Fourth, even improved models display substantial levels of negative behaviors, revealing that improvement does not imply safety. Fifth, and most subtly, models change behavior without any announced changes, underscoring how transparency in model updates is a necessary prerequisite for robust audit findings.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Findings -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column is-full">
+            <h2 class="title is-3 has-text-centered">Crucial Findings for Evaluating LLMs for Social Impact</h2>
+
+            <div class="content has-text-justified">
+
+              <h3 class="title is-4">1. API and Chat Interface Produce Dramatically Different Results</h3>
+              <p>
+                We observe large differences in performance between the API and chat interface environments. GPT-4o (API) displays nearly twice the mean negative behavior intensity of GPT-4o (CHAT) and 8 times lower positive behavior intensity. This shows that <strong>automated testing through the API isn't sufficient to assess the actual impact of chatbots in the real world</strong>.
+              </p>
+
+              <h3 class="title is-4">2. GPT-5 Shows Improvement Over GPT-4o in the Chat Interface</h3>
+              <p>
+                When tested in the chat interface, GPT-5 displays more positive behaviors, like pushback, and fewer negative behaviors, like sychophance, than GPT-4o, showing that these behaviors are subject to influence by the companies.
+              </p>
+
+              <h3 class="title is-4">3. Even Improved Models Display Substantial Negative Behaviors</h3>
+              <p>
+                Even with improvements, ChatGPT-5 still averages nearly one sycophantic behavior per turn. And across all conversations, ChatGPT-5 (CHAT) is more likely to exhibit sycophancy than pushback. Improvement does not imply safety.
+              </p>
+
+              <div class="has-text-centered">
+                <img src="./static/images/pushback_sycophancy.png"
+                     alt="Comparison of pushback and sycophancy for ChatGPT-4o and ChatGPT-5"
+                     style="max-width: 80%; height: auto; margin: 20px 0;" />
+              </div>
+              <p class="has-text-centered is-size-6">
+                <em>Even though GPT-5 pushes back more and is less sycophantic than GPT-4o, GPT-5 still averages nearly one sycophantic behavior per turn.</em>
+              </p>
+
+              <h3 class="title is-4">4. Temporal Dynamics Matter</h3>
+              <p>
+                Even when our graders assess nearly identical intensity in a behavior across an entire conversation, we observe large differences in the <em>trajectory</em> of these behaviors within the conversation. Modeling real-world social impacts from LLMs requires multi-turn evaluation and particular attention to temporal dynamics.
+              </p>
+
+              <div class="has-text-centered">
+                <img src="./static/images/help_referral.png"
+                     alt="Help referral behavior over conversation turns"
+                     style="max-width: 100%; height: auto; margin: 20px 0;" />
+              </div>
+              <p class="has-text-centered is-size-6">
+                <em>GPT-4o and GPT-5 have similar rates of help referral overall, but only GPT-5 increases help referral as the conversation proceeds.</em>
+              </p>
+
+              <h3 class="title is-4">5. Model Behavior Changes Silently Over Time</h3>
+              <p>
+                Tests to the same model/interface pair taken just months apart can yield completely different results. We observed a complete reversal of behavior in ChatGPT-5 (API) between August and October, underscoring how <strong>transparency in model updates is a necessary prerequisite for robust audit findings</strong>.
+              </p>
+
+              <div class="has-text-centered">
+                <img src="./static/images/api_time_comparison.png"
+                     alt="Differences in behavior intensity for the same API model taken two months apart"
+                     style="max-width: 80%; height: auto; margin: 20px 0;" />
+              </div>
+              <p class="has-text-centered is-size-6">
+                <em>Differences in positive and negative mean behavior intensity for the same API model results taken two months apart.</em>
+              </p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Methodology: Animated Walkthrough -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column is-full">
+            <h2 class="title is-3 has-text-centered">Methodology</h2>
+
+            <style>
+              #method-diagram .step { opacity: 0; transition: opacity 0.8s ease; }
+              #method-diagram .step.visible { opacity: 1; }
+              #method-highlight { stroke-dasharray: 600; stroke-dashoffset: 600; transition: stroke-dashoffset 1.2s ease; }
+              #method-highlight.visible { stroke-dashoffset: 0; }
+              .draw-arrow {
+                stroke-dasharray: 350;
+                stroke-dashoffset: 350;
+                transition: stroke-dashoffset 2.5s ease;
+              }
+              .draw-arrow.drawn { stroke-dashoffset: 0; }
+              #narration-box {
+                min-height: 100px;
+                padding: 20px 24px;
+                margin-top: 16px;
+                background: #f8f9fa;
+                border-left: 4px solid #7b2d8e;
+                border-radius: 0 6px 6px 0;
+                font-size: 15px;
+                line-height: 1.6;
+                color: #333;
+                transition: opacity 0.5s ease;
+              }
+              #narration-box.fading { opacity: 0; }
+              .data-pulse {
+                r: 4;
+                filter: url(#glow);
+                opacity: 0;
+              }
+              .data-pulse.active { opacity: 1; }
+              .pair-label {
+                font-size: 11px;
+                font-style: italic;
+                fill: #7b2d8e;
+                font-weight: 600;
+              }
+            </style>
+
+            <div class="has-text-centered" style="margin: 20px 0; overflow-x: auto;">
+              <svg id="method-diagram" viewBox="0 0 1150 400" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; height: auto; font-family: 'Noto Sans', 'Google Sans', sans-serif;">
+                <defs>
+                  <marker id="m-arrow-purple" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                    <path d="M0,0 L8,3 L0,6 Z" fill="#7b2d8e"/>
+                  </marker>
+                  <marker id="m-arrow-teal" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                    <path d="M0,0 L8,3 L0,6 Z" fill="#1a8a7d"/>
+                  </marker>
+                  <marker id="m-arrow-blue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                    <path d="M0,0 L8,3 L0,6 Z" fill="#3b6fb5"/>
+                  </marker>
+                  <marker id="m-arrow-gray" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                    <path d="M0,0 L8,3 L0,6 Z" fill="#888"/>
+                  </marker>
+                  <marker id="m-arrow-red" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                    <path d="M0,0 L8,3 L0,6 Z" fill="#c0392b"/>
+                  </marker>
+                  <marker id="m-arrow-dark" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                    <path d="M0,0 L8,3 L0,6 Z" fill="#333"/>
+                  </marker>
+                  <filter id="glow">
+                    <feGaussianBlur stdDeviation="2.5" result="blur"/>
+                    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                  <!-- Animated pulse motion paths -->
+                  <path id="mp-kimi-4o" d="M320,127 L370,127 L395,72" fill="none"/>
+                  <path id="mp-kimi-5" d="M320,127 L370,127 L395,205" fill="none"/>
+                  <path id="mp-return-1" d="M650,36 L670,36 L670,155 Q670,170 655,170 L345,170 Q330,170 330,155 L330,137" fill="none"/>
+                  <path id="mp-return-2" d="M650,243 L670,243 L670,155 Q670,170 655,170 L345,170 Q330,170 330,155 L330,137" fill="none"/>
+                  <path id="mp-to-grading" d="M680,135 L735,135" fill="none"/>
+                  <path id="mp-grade-h1" d="M855,125 L895,64" fill="none"/>
+                  <path id="mp-grade-h2" d="M855,135 L895,135" fill="none"/>
+                  <path id="mp-grade-llm" d="M855,145 L895,207" fill="none"/>
+                </defs>
+
+                <!-- ===== STEP 1: Seed Prompts box ===== -->
+                <g id="s1" class="step">
+                  <rect x="20" y="100" width="130" height="55" rx="6" fill="#7b2d8e" opacity="0.9"/>
+                  <text x="85" y="122" text-anchor="middle" fill="white" font-size="11" font-weight="bold">14 Conversation</text>
+                  <text x="85" y="138" text-anchor="middle" fill="white" font-size="11" font-weight="bold">Starters</text>
+                </g>
+
+                <!-- ===== STEP 2: Breakdown + highlight border ===== -->
+                <g id="s2" class="step">
+                  <rect x="20" y="170" width="130" height="100" rx="4" fill="#d4b0e0" opacity="0.7"/>
+                  <text x="85" y="188" text-anchor="middle" fill="#333" font-size="9">5 Mania/Psychosis</text>
+                  <text x="85" y="202" text-anchor="middle" fill="#333" font-size="9">5 Conspiracies</text>
+                  <text x="85" y="216" text-anchor="middle" fill="#333" font-size="9">1 Spiral Tropes</text>
+                  <text x="85" y="230" text-anchor="middle" fill="#333" font-size="9">1 AI Consciousness</text>
+                  <text x="85" y="244" text-anchor="middle" fill="#333" font-size="9">1 Theory Dev.</text>
+                  <text x="85" y="258" text-anchor="middle" fill="#333" font-size="9">1 Intellectual Expl.</text>
+                  <!-- Animated highlight border -->
+                  <rect id="method-highlight" x="12" y="92" width="146" height="186" rx="10" fill="none" stroke="#7b2d8e" stroke-width="2.5" stroke-dasharray="600" stroke-dashoffset="600"/>
+                </g>
+
+                <!-- ===== STEP 3: Models + interfaces + arrows from seeds ===== -->
+                <g id="s3" class="step">
+                  <!-- Purple arrows with draw animation (no marker - arrowheads added separately) -->
+                  <path class="draw-arrow" d="M150,115 Q200,50 393,62" fill="none" stroke="#7b2d8e" stroke-width="1.8"/>
+                  <path class="draw-arrow" d="M150,140 Q200,230 393,215" fill="none" stroke="#7b2d8e" stroke-width="1.8"/>
+                  <!-- Purple arrowheads (appear after draw completes) -->
+                  <g id="s3-tips" style="opacity: 0; transition: opacity 0.4s ease;">
+                    <polygon points="394,62 384,56 384,68" fill="#7b2d8e"/>
+                    <polygon points="394,215 384,209 384,221" fill="#7b2d8e"/>
+                  </g>
+                  <!-- ChatGPT-4o box -->
+                  <rect x="395" y="42" width="120" height="40" rx="6" fill="#3b6fb5" opacity="0.9"/>
+                  <text x="455" y="67" text-anchor="middle" fill="white" font-size="11" font-weight="bold">ChatGPT-4o</text>
+                  <!-- ChatGPT-5 box -->
+                  <rect x="395" y="195" width="120" height="40" rx="6" fill="#3b6fb5" opacity="0.9"/>
+                  <text x="455" y="220" text-anchor="middle" fill="white" font-size="11" font-weight="bold">ChatGPT-5</text>
+                  <!-- Blue arrows to interfaces -->
+                  <line x1="515" y1="52" x2="553" y2="36" stroke="#3b6fb5" stroke-width="1.8" marker-end="url(#m-arrow-blue)"/>
+                  <line x1="515" y1="72" x2="553" y2="86" stroke="#3b6fb5" stroke-width="1.8" marker-end="url(#m-arrow-blue)"/>
+                  <line x1="515" y1="205" x2="553" y2="193" stroke="#3b6fb5" stroke-width="1.8" marker-end="url(#m-arrow-blue)"/>
+                  <line x1="515" y1="225" x2="553" y2="243" stroke="#3b6fb5" stroke-width="1.8" marker-end="url(#m-arrow-blue)"/>
+                  <!-- CHAT 4o -->
+                  <rect x="555" y="18" width="95" height="35" rx="4" fill="#2d8a4e"/>
+                  <text x="602" y="33" text-anchor="middle" fill="white" font-size="9" font-weight="bold">CHAT</text>
+                  <text x="602" y="46" text-anchor="middle" fill="white" font-size="8">(chatgpt.com)</text>
+                  <!-- API 4o -->
+                  <rect x="555" y="68" width="95" height="35" rx="4" fill="#c47a1a"/>
+                  <text x="602" y="83" text-anchor="middle" fill="white" font-size="9" font-weight="bold">API</text>
+                  <text x="602" y="96" text-anchor="middle" fill="white" font-size="8">(OpenRouter)</text>
+                  <!-- CHAT 5 -->
+                  <rect x="555" y="175" width="95" height="35" rx="4" fill="#2d8a4e"/>
+                  <text x="602" y="190" text-anchor="middle" fill="white" font-size="9" font-weight="bold">CHAT</text>
+                  <text x="602" y="203" text-anchor="middle" fill="white" font-size="8">(chatgpt.com)</text>
+                  <!-- API 5 -->
+                  <rect x="555" y="225" width="95" height="35" rx="4" fill="#c47a1a"/>
+                  <text x="602" y="240" text-anchor="middle" fill="white" font-size="9" font-weight="bold">API</text>
+                  <text x="602" y="253" text-anchor="middle" fill="white" font-size="8">(OpenRouter)</text>
+                </g>
+
+                <!-- ===== STEP 4: Model-interface pair highlight circles (NEW) ===== -->
+                <g id="s4a" class="step">
+                  <ellipse cx="522" cy="44" rx="140" ry="38" fill="rgba(123,45,142,0.06)" stroke="#7b2d8e" stroke-width="2.5" stroke-dasharray="8,4"/>
+                  <text x="672" y="48" class="pair-label">first model-interface pair</text>
+                </g>
+                <g id="s4b" class="step">
+                  <ellipse cx="522" cy="80" rx="140" ry="34" fill="rgba(123,45,142,0.06)" stroke="#7b2d8e" stroke-width="2.5" stroke-dasharray="8,4"/>
+                  <text x="672" y="84" class="pair-label">second model-interface pair</text>
+                </g>
+                <g id="s4c" class="step">
+                  <ellipse cx="522" cy="200" rx="140" ry="38" fill="rgba(123,45,142,0.06)" stroke="#7b2d8e" stroke-width="2.5" stroke-dasharray="8,4"/>
+                  <text x="672" y="204" class="pair-label">third model-interface pair</text>
+                </g>
+                <g id="s4d" class="step">
+                  <ellipse cx="522" cy="242" rx="140" ry="34" fill="rgba(123,45,142,0.06)" stroke="#7b2d8e" stroke-width="2.5" stroke-dasharray="8,4"/>
+                  <text x="672" y="246" class="pair-label">fourth model-interface pair</text>
+                </g>
+
+                <!-- ===== STEP 5: Gray response arrows from interfaces ===== -->
+                <g id="s5" class="step">
+                  <path d="M650,36 L670,36 L670,135" fill="none" stroke="#888" stroke-width="1.8" stroke-dasharray="5,4"/>
+                  <path d="M650,86 L670,86 L670,135" fill="none" stroke="#888" stroke-width="1.8" stroke-dasharray="5,4"/>
+                  <path d="M650,193 L670,193 L670,135" fill="none" stroke="#888" stroke-width="1.8" stroke-dasharray="5,4"/>
+                  <path d="M650,243 L670,243 L670,135" fill="none" stroke="#888" stroke-width="1.8" stroke-dasharray="5,4"/>
+                </g>
+
+                <!-- ===== STEP 6: Kimi K2 appears + arrows to models ===== -->
+                <g id="s6" class="step">
+                  <rect x="200" y="105" width="120" height="45" rx="6" fill="#1a8a7d" opacity="0.9"/>
+                  <text x="260" y="123" text-anchor="middle" fill="white" font-size="11" font-weight="bold">Kimi K2</text>
+                  <text x="260" y="138" text-anchor="middle" fill="white" font-size="9.5">(Simulated User)</text>
+                  <!-- Arrows from Kimi to models -->
+                  <line x1="320" y1="127" x2="370" y2="127" stroke="#1a8a7d" stroke-width="2" marker-end="url(#m-arrow-teal)"/>
+                  <line x1="370" y1="127" x2="393" y2="72" stroke="#1a8a7d" stroke-width="2" marker-end="url(#m-arrow-teal)"/>
+                  <line x1="370" y1="127" x2="393" y2="205" stroke="#1a8a7d" stroke-width="2" marker-end="url(#m-arrow-teal)"/>
+                  <!-- Return loop back to Kimi -->
+                  <path d="M670,135 L670,155 Q670,170 655,170 L345,170 Q330,170 330,155 L330,137" fill="none" stroke="#888" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#m-arrow-gray)"/>
+                </g>
+
+                <!-- ===== STEP 7: 20 turns label + totals bar (appears during grading) ===== -->
+                <g id="s7" class="step">
+                  <!-- 20 turns label -->
+                  <rect x="470" y="158" width="70" height="20" rx="3" fill="white" stroke="#888" stroke-width="1"/>
+                  <text x="505" y="172" text-anchor="middle" fill="#666" font-size="10" font-weight="bold">20 turns</text>
+                  <!-- Bottom bar -->
+                  <rect x="175" y="340" width="800" height="36" rx="6" fill="#2c2c2c"/>
+                  <text x="575" y="363" text-anchor="middle" fill="white" font-size="11" font-weight="bold">Total: 1,120 turns &times; 2 human graders = 2,240 turns human graded + 1,120 LLM graded</text>
+                </g>
+
+                <!-- ===== STEP 8a: Grading box + arrows + grader boxes ===== -->
+                <g id="s8a" class="step">
+                  <!-- Arrow to grading -->
+                  <line x1="680" y1="135" x2="733" y2="135" stroke="#888" stroke-width="2" marker-end="url(#m-arrow-gray)"/>
+                  <!-- Turn-Level Grading box -->
+                  <rect x="735" y="110" width="120" height="50" rx="6" fill="#c0392b" opacity="0.9"/>
+                  <text x="795" y="131" text-anchor="middle" fill="white" font-size="11" font-weight="bold">Turn-Level</text>
+                  <text x="795" y="147" text-anchor="middle" fill="white" font-size="11" font-weight="bold">Grading</text>
+                  <!-- Grading arrows to graders -->
+                  <line x1="855" y1="125" x2="893" y2="64" stroke="#c0392b" stroke-width="1.8" marker-end="url(#m-arrow-red)"/>
+                  <line x1="855" y1="135" x2="893" y2="135" stroke="#c0392b" stroke-width="1.8" marker-end="url(#m-arrow-red)"/>
+                  <line x1="855" y1="145" x2="893" y2="207" stroke="#c0392b" stroke-width="1.8" marker-end="url(#m-arrow-red)"/>
+                  <!-- Human Grader 1 -->
+                  <rect x="895" y="35" width="95" height="38" rx="4" fill="#f0c040"/>
+                  <text x="942" y="51" text-anchor="middle" fill="#333" font-size="9" font-weight="bold">Human</text>
+                  <text x="942" y="64" text-anchor="middle" fill="#333" font-size="9" font-weight="bold">Grader 1</text>
+                  <!-- Human Grader 2 -->
+                  <rect x="895" y="116" width="95" height="38" rx="4" fill="#f0c040"/>
+                  <text x="942" y="132" text-anchor="middle" fill="#333" font-size="9" font-weight="bold">Human</text>
+                  <text x="942" y="145" text-anchor="middle" fill="#333" font-size="9" font-weight="bold">Grader 2</text>
+                  <!-- LLM Judge -->
+                  <rect x="895" y="198" width="95" height="38" rx="4" fill="#777"/>
+                  <text x="942" y="214" text-anchor="middle" fill="white" font-size="9" font-weight="bold">LLM Judge</text>
+                  <text x="942" y="227" text-anchor="middle" fill="white" font-size="8.5">(GPT-5)</text>
+                </g>
+
+                <!-- ===== STEP 8b: Graders → Behavior boxes (phase 2 after pause) ===== -->
+                <g id="s8b" class="step">
+                  <!-- Arrows from graders toward behavior boxes -->
+                  <line x1="990" y1="54" x2="1018" y2="65" stroke="#333" stroke-width="1.5" marker-end="url(#m-arrow-dark)"/>
+                  <line x1="990" y1="135" x2="1018" y2="100" stroke="#333" stroke-width="1.2" opacity="0.5"/>
+                  <line x1="990" y1="135" x2="1018" y2="172" stroke="#333" stroke-width="1.2" opacity="0.5"/>
+                  <line x1="990" y1="217" x2="1018" y2="205" stroke="#333" stroke-width="1.5" marker-end="url(#m-arrow-dark)"/>
+                  <!-- Positive behaviors box (green) -->
+                  <rect x="1020" y="28" width="115" height="80" rx="4" fill="#d4edda" stroke="#2d8a4e" stroke-width="1"/>
+                  <text x="1078" y="48" text-anchor="middle" fill="#1a6b32" font-size="9"><tspan font-weight="bold">+</tspan> Pushback</text>
+                  <text x="1078" y="62" text-anchor="middle" fill="#1a6b32" font-size="9"><tspan font-weight="bold">+</tspan> De-escalation</text>
+                  <text x="1078" y="76" text-anchor="middle" fill="#1a6b32" font-size="9"><tspan font-weight="bold">+</tspan> Redirection</text>
+                  <text x="1078" y="90" text-anchor="middle" fill="#1a6b32" font-size="9"><tspan font-weight="bold">+</tspan> Help referral</text>
+                  <!-- Negative behaviors box (red) -->
+                  <rect x="1020" y="165" width="115" height="80" rx="4" fill="#f8d7da" stroke="#c0392b" stroke-width="1"/>
+                  <text x="1078" y="185" text-anchor="middle" fill="#a12828" font-size="9"><tspan font-weight="bold">&ndash;</tspan> Escalation</text>
+                  <text x="1078" y="199" text-anchor="middle" fill="#a12828" font-size="9"><tspan font-weight="bold">&ndash;</tspan> Delusion reinf.</text>
+                  <text x="1078" y="213" text-anchor="middle" fill="#a12828" font-size="9"><tspan font-weight="bold">&ndash;</tspan> Sycophancy</text>
+                  <text x="1078" y="227" text-anchor="middle" fill="#a12828" font-size="9"><tspan font-weight="bold">&ndash;</tspan> Harmful advice</text>
+                </g>
+
+                <!-- ===== Animated data pulses (outside step groups for independent control) ===== -->
+                <!-- Teal pulses: Kimi → models -->
+                <circle class="data-pulse" r="4" fill="#2bbfad" filter="url(#glow)">
+                  <animateMotion dur="2s" repeatCount="indefinite" begin="indefinite" id="pulse-k4o">
+                    <mpath href="#mp-kimi-4o"/>
+                  </animateMotion>
+                </circle>
+                <circle class="data-pulse" r="4" fill="#2bbfad" filter="url(#glow)">
+                  <animateMotion dur="2s" repeatCount="indefinite" begin="indefinite" id="pulse-k5">
+                    <mpath href="#mp-kimi-5"/>
+                  </animateMotion>
+                </circle>
+                <!-- Gray return pulses -->
+                <circle class="data-pulse" r="3.5" fill="#bbb" filter="url(#glow)">
+                  <animateMotion dur="4s" repeatCount="indefinite" begin="indefinite" id="pulse-r1">
+                    <mpath href="#mp-return-1"/>
+                  </animateMotion>
+                </circle>
+                <circle class="data-pulse" r="3.5" fill="#bbb" filter="url(#glow)">
+                  <animateMotion dur="4s" repeatCount="indefinite" begin="indefinite" id="pulse-r2">
+                    <mpath href="#mp-return-2"/>
+                  </animateMotion>
+                </circle>
+                <!-- Red grading pulses -->
+                <circle class="data-pulse" r="3" fill="#e74c3c" filter="url(#glow)">
+                  <animateMotion dur="1.8s" repeatCount="indefinite" begin="indefinite" id="pulse-gh1">
+                    <mpath href="#mp-grade-h1"/>
+                  </animateMotion>
+                </circle>
+                <circle class="data-pulse" r="3" fill="#e74c3c" filter="url(#glow)">
+                  <animateMotion dur="1.8s" repeatCount="indefinite" begin="indefinite" id="pulse-gh2">
+                    <mpath href="#mp-grade-h2"/>
+                  </animateMotion>
+                </circle>
+                <circle class="data-pulse" r="3" fill="#e74c3c" filter="url(#glow)">
+                  <animateMotion dur="1.8s" repeatCount="indefinite" begin="indefinite" id="pulse-gllm">
+                    <mpath href="#mp-grade-llm"/>
+                  </animateMotion>
+                </circle>
+
+              </svg>
+            </div>
+
+            <!-- Narration box -->
+            <div id="narration-box"></div>
+
+            <!-- Manual step controls (appear after first animation) -->
+            <div id="step-controls" style="display: none; text-align: center; margin-top: 20px;">
+              <button id="btn-prev" style="padding: 10px 20px; margin: 0 8px; font-size: 14px; background: #7b2d8e; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">← Previous</button>
+              <span id="step-indicator" style="display: inline-block; min-width: 100px; font-size: 14px; color: #666; font-weight: 600;">Step 1 / 9</span>
+              <button id="btn-next" style="padding: 10px 20px; margin: 0 8px; font-size: 14px; background: #7b2d8e; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">Next →</button>
+              <button id="btn-replay" style="padding: 10px 20px; margin: 0 8px; font-size: 14px; background: #555; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">⟲ Replay Auto</button>
+            </div>
+
+            <script>
+            (function() {
+              var narrationBox = document.getElementById('narration-box');
+              var highlightRect = document.getElementById('method-highlight');
+              var pendingTimeouts = [];
+              var manualMode = false;
+              var currentStepIndex = 0;
+
+              var allGroupIds = ['s1','s2','s3','s4a','s4b','s4c','s4d','s5','s6','s7','s8a','s8b'];
+              var tealPulseIds = ['pulse-k4o', 'pulse-k5', 'pulse-r1', 'pulse-r2'];
+              var redPulseIds = ['pulse-gh1', 'pulse-gh2', 'pulse-gllm'];
+
+              // Define each step with all its display state
+              var stepDefinitions = [
+                { // Step 1
+                  groups: ['s1'],
+                  arrowsDraw: false,
+                  highlight: false,
+                  tealPulses: false,
+                  redPulses: false,
+                  narration: ''
+                },
+                { // Step 2
+                  groups: ['s1', 's2'],
+                  arrowsDraw: false,
+                  highlight: true,
+                  tealPulses: false,
+                  redPulses: false,
+                  narration: 'We are primarily simulating users experiencing signs of <strong>mania or psychosis</strong> or exhibiting <strong>conspiratorial thinking</strong>.'
+                },
+                { // Step 3
+                  groups: ['s1', 's2', 's3'],
+                  arrowsDraw: true,
+                  highlight: true,
+                  tealPulses: false,
+                  redPulses: false,
+                  narration: 'Conversation starters are fed into either <strong>GPT-4o</strong> or <strong>GPT-5</strong>, accessed through the <strong style="color:#2d8a4e">chat UI</strong> or the <strong style="color:#c47a1a">API</strong>. Each combination of model and interface is our <em>&ldquo;model-interface pair,&rdquo;</em> which serves as our object of study.'
+                },
+                { // Step 4 (all 4 circles visible)
+                  groups: ['s1', 's2', 's3', 's4a', 's4b', 's4c', 's4d'],
+                  arrowsDraw: true,
+                  highlight: true,
+                  tealPulses: false,
+                  redPulses: false,
+                  narration: 'Conversation starters are fed into either <strong>GPT-4o</strong> or <strong>GPT-5</strong>, accessed through the <strong style="color:#2d8a4e">chat UI</strong> or the <strong style="color:#c47a1a">API</strong>. Each combination of model and interface is our <em>&ldquo;model-interface pair,&rdquo;</em> which serves as our object of study.'
+                },
+                { // Step 5
+                  groups: ['s1', 's2', 's3', 's5'],
+                  arrowsDraw: true,
+                  highlight: true,
+                  tealPulses: false,
+                  redPulses: false,
+                  narration: 'These model-interface pairs <strong>respond</strong> to the conversation starter.'
+                },
+                { // Step 6
+                  groups: ['s1', 's2', 's3', 's5', 's6'],
+                  arrowsDraw: true,
+                  highlight: true,
+                  tealPulses: false,
+                  redPulses: false,
+                  narration: 'Then <strong style="color:#1a8a7d">Kimi K2</strong>, another LLM which has been instructed to play the role of our simulated user, <strong>steps in!</strong> This simulated user goes back and forth with the model-interface pair &mdash; like GPT-4o accessed in the user interface, for example &mdash; and proceeds to converse for <strong>20 turns</strong>.'
+                },
+                { // Step 7
+                  groups: ['s1', 's2', 's3', 's5', 's6'],
+                  arrowsDraw: true,
+                  highlight: true,
+                  tealPulses: true,
+                  redPulses: false,
+                  narration: 'Because we have <strong>4 model-interface pairs</strong>, each running <strong>14 conversations</strong> of <strong>20 turns</strong>, this results in <strong>1,120 total turns</strong>.'
+                },
+                { // Step 8
+                  groups: ['s1', 's2', 's3', 's5', 's6', 's7', 's8a', 's8b'],
+                  arrowsDraw: true,
+                  highlight: true,
+                  tealPulses: false,
+                  redPulses: true,
+                  narration: 'Each turn is graded by <strong style="color:#b8960f">two different humans</strong> and an <strong style="color:#555">LLM judge</strong> for <strong>8 different behaviors</strong>: 4 positive and 4 negative. That means there are <strong>3,360 turn-level assessments</strong>! If our human graders identify a behavior, they highlight the text where it happens and assign a <strong>strength rating of 1&ndash;3</strong>, and they do this for all behaviors they identify across all 20 turns in a conversation.'
+                },
+                { // Step 9
+                  groups: ['s1', 's2', 's3', 's5', 's6', 's7', 's8a', 's8b'],
+                  arrowsDraw: true,
+                  highlight: true,
+                  tealPulses: false,
+                  redPulses: true,
+                  narration: '<strong>This leads to a key metric: Mean Behavior Intensity.</strong> It asks: how intensely, on average, does a behavior appear in a conversation? The more a behavior appears, the higher the score. But also the more <em>intensely</em> the behavior appears, the higher the score.<br><br>For example: <strong>mild sycophancy</strong> (strength 1) happening on every single turn of a 20-turn conversation would have a mean intensity score of <strong>1.0</strong> (20 grades of strength 1 &divide; 20 turns). Meanwhile, <strong>intense sycophancy</strong> (strength 3) happening only 6 times would score <strong>0.9</strong> (6 grades &times; strength 3 = 18 &divide; 20 turns). This metric captures both frequency <em>and</em> intensity on the y-axis of the charts throughout this page.'
+                }
+              ];
+
+              function schedule(fn, delay) {
+                var t = setTimeout(fn, delay);
+                pendingTimeouts.push(t);
+                return t;
+              }
+
+              function clearAllTimeouts() {
+                pendingTimeouts.forEach(clearTimeout);
+                pendingTimeouts = [];
+              }
+
+              function showGroup(id) {
+                var el = document.getElementById(id);
+                if (el) {
+                  el.classList.add('visible');
+                  setTimeout(function() { el.style.opacity = '1'; }, 50);
+                }
+              }
+
+              function hideGroup(id) {
+                var el = document.getElementById(id);
+                if (el) {
+                  el.classList.remove('visible');
+                  el.style.opacity = '0';
+                }
+              }
+
+              function setNarration(html) {
+                if (!html) {
+                  narrationBox.style.display = 'none';
+                  return;
+                }
+                narrationBox.style.display = 'block';
+                narrationBox.classList.add('fading');
+                setTimeout(function() {
+                  narrationBox.innerHTML = html;
+                  narrationBox.classList.remove('fading');
+                }, 300);
+              }
+
+              function startPulses(ids) {
+                ids.forEach(function(id) {
+                  var anim = document.getElementById(id);
+                  if (anim) {
+                    anim.parentElement.classList.add('active');
+                    try { anim.beginElement(); } catch(e) {}
+                  }
+                });
+              }
+
+              function stopPulses(ids) {
+                ids.forEach(function(id) {
+                  var anim = document.getElementById(id);
+                  if (anim) {
+                    anim.parentElement.classList.remove('active');
+                    try { anim.endElement(); } catch(e) {}
+                  }
+                });
+              }
+
+              function resetAll() {
+                clearAllTimeouts();
+                allGroupIds.forEach(function(id) {
+                  var el = document.getElementById(id);
+                  if (el) { el.classList.remove('visible'); el.style.opacity = '0'; }
+                });
+                if (highlightRect) highlightRect.classList.remove('visible');
+                // Reset purple arrow draw
+                document.querySelectorAll('.draw-arrow').forEach(function(a) {
+                  a.classList.remove('drawn');
+                });
+                var tips = document.getElementById('s3-tips');
+                if (tips) tips.style.opacity = '0';
+                // Reset narration
+                narrationBox.innerHTML = '';
+                narrationBox.style.display = 'none';
+                narrationBox.classList.remove('fading');
+                // Stop all pulses
+                stopPulses(tealPulseIds);
+                stopPulses(redPulseIds);
+              }
+
+              function showStep(index) {
+                if (index < 0 || index >= stepDefinitions.length) return;
+                currentStepIndex = index;
+                var step = stepDefinitions[index];
+
+                // Hide all groups first
+                allGroupIds.forEach(function(id) { hideGroup(id); });
+
+                // Show the groups for this step
+                step.groups.forEach(function(id) { showGroup(id); });
+
+                // Highlight border
+                if (step.highlight) {
+                  if (highlightRect) highlightRect.classList.add('visible');
+                } else {
+                  if (highlightRect) highlightRect.classList.remove('visible');
+                }
+
+                // Purple arrow draw
+                if (step.arrowsDraw) {
+                  document.querySelectorAll('.draw-arrow').forEach(function(a) {
+                    a.classList.add('drawn');
+                  });
+                  var tips = document.getElementById('s3-tips');
+                  if (tips) tips.style.opacity = '1';
+                } else {
+                  document.querySelectorAll('.draw-arrow').forEach(function(a) {
+                    a.classList.remove('drawn');
+                  });
+                  var tips = document.getElementById('s3-tips');
+                  if (tips) tips.style.opacity = '0';
+                }
+
+                // Pulses
+                if (step.tealPulses) {
+                  startPulses(tealPulseIds);
+                } else {
+                  stopPulses(tealPulseIds);
+                }
+                if (step.redPulses) {
+                  startPulses(redPulseIds);
+                } else {
+                  stopPulses(redPulseIds);
+                }
+
+                // Narration
+                setNarration(step.narration);
+
+                // Update step indicator
+                var indicator = document.getElementById('step-indicator');
+                if (indicator) indicator.textContent = 'Step ' + (index + 1) + ' / ' + stepDefinitions.length;
+
+                // Disable prev/next buttons at boundaries
+                var btnPrev = document.getElementById('btn-prev');
+                var btnNext = document.getElementById('btn-next');
+                if (btnPrev) btnPrev.disabled = (index === 0);
+                if (btnNext) btnNext.disabled = (index === stepDefinitions.length - 1);
+              }
+
+              function enterManualMode() {
+                manualMode = true;
+                clearAllTimeouts();
+                stopPulses(tealPulseIds);
+                stopPulses(redPulseIds);
+                document.getElementById('step-controls').style.display = 'block';
+                showStep(0);
+              }
+
+              function runAnimation() {
+                resetAll();
+                var t = 0;
+
+                // ── STEP 1 (3s): "14 Conversation Starters" purple box ──
+                schedule(function() {
+                  showGroup('s1');
+                }, t);
+                t += 3000;
+
+                // ── STEP 2 (6s): Breakdown box + animated dashed border ──
+                schedule(function() {
+                  showGroup('s2');
+                  schedule(function() { highlightRect.classList.add('visible'); }, 400);
+                  setNarration('We are primarily simulating users experiencing signs of <strong>mania or psychosis</strong> or exhibiting <strong>conspiratorial thinking</strong>.');
+                }, t);
+                t += 6000;
+
+                // ── STEP 3 (7s): Purple arrows (draw slowly) + models + interfaces ──
+                schedule(function() {
+                  showGroup('s3');
+                  // Trigger the purple arrow draw animation
+                  schedule(function() {
+                    document.querySelectorAll('.draw-arrow').forEach(function(a) {
+                      a.classList.add('drawn');
+                    });
+                  }, 200);
+                  // Show arrowheads after draw completes
+                  schedule(function() {
+                    var tips = document.getElementById('s3-tips');
+                    if (tips) tips.style.opacity = '1';
+                  }, 2800);
+                  setNarration('Conversation starters are fed into either <strong>GPT-4o</strong> or <strong>GPT-5</strong>, accessed through the <strong style="color:#2d8a4e">chat UI</strong> or the <strong style="color:#c47a1a">API</strong>. Each combination of model and interface is our <em>&ldquo;model-interface pair,&rdquo;</em> which serves as our object of study.');
+                }, t);
+                t += 7000;
+
+                // ── STEP 4 (7s): Sequential circles highlighting each model-interface pair ──
+                schedule(function() {
+                  // Keep previous narration visible (no setNarration call)
+                  var pairs = ['s4a', 's4b', 's4c', 's4d'];
+                  var interval = 1600;
+                  pairs.forEach(function(id, i) {
+                    schedule(function() {
+                      if (i > 0) hideGroup(pairs[i - 1]);
+                      showGroup(id);
+                    }, i * interval);
+                  });
+                  // Hide last circle before next step
+                  schedule(function() {
+                    hideGroup(pairs[pairs.length - 1]);
+                  }, pairs.length * interval);
+                }, t);
+                t += 7000;
+
+                // ── STEP 5 (5s): Gray dashed response arrows ──
+                schedule(function() {
+                  showGroup('s5');
+                  setNarration('These model-interface pairs <strong>respond</strong> to the conversation starter.');
+                }, t);
+                t += 5000;
+
+                // ── STEP 6 (12s): Kimi K2 + arrows + return loop ──
+                schedule(function() {
+                  showGroup('s6');
+                  setNarration('Then <strong style="color:#1a8a7d">Kimi K2</strong>, another LLM which has been instructed to play the role of our simulated user, <strong>steps in!</strong> This simulated user goes back and forth with the model-interface pair &mdash; like GPT-4o accessed in the user interface, for example &mdash; and proceeds to converse for <strong>20 turns</strong>.');
+                }, t);
+                t += 12000;
+
+                // ── STEP 7 (7s): Glowing teal/gray pulses flowing ──
+                schedule(function() {
+                  startPulses(tealPulseIds);
+                  setNarration('Because we have <strong>4 model-interface pairs</strong>, each running <strong>14 conversations</strong> of <strong>20 turns</strong>, this results in <strong>1,120 total turns</strong>.');
+                }, t);
+                t += 7000;
+
+                // ── STEP 8 (15s): Grading section with 2-second mid-step pause ──
+                schedule(function() {
+                  // Stop teal/gray pulses
+                  stopPulses(tealPulseIds);
+
+                  // Phase 1: Grading box + graders appear
+                  showGroup('s8a');
+                  setNarration('Each turn is graded by <strong style="color:#b8960f">two different humans</strong> and an <strong style="color:#555">LLM judge</strong>&hellip;');
+
+                  // Start red grading pulses
+                  schedule(function() {
+                    startPulses(redPulseIds);
+                  }, 800);
+
+                  // Phase 2 (after ~5s: 3s to read + 2s pause): behavior boxes + totals
+                  schedule(function() {
+                    showGroup('s8b');
+                    showGroup('s7');
+                    setNarration('Each turn is graded by <strong style="color:#b8960f">two different humans</strong> and an <strong style="color:#555">LLM judge</strong> for <strong>8 different behaviors</strong>: 4 positive and 4 negative. That means there are <strong>3,360 turn-level assessments</strong>! If our human graders identify a behavior, they highlight the text where it happens and assign a <strong>strength rating of 1&ndash;3</strong>, and they do this for all behaviors they identify across all 20 turns in a conversation.');
+                  }, 5000);
+                }, t);
+                t += 15000;
+
+                // ── STEP 9 (14s): Mean Behavior Intensity (no new diagram elements) ──
+                schedule(function() {
+                  setNarration('<strong>This leads to a key metric: Mean Behavior Intensity.</strong> It asks: how intensely, on average, does a behavior appear in a conversation? The more a behavior appears, the higher the score. But also the more <em>intensely</em> the behavior appears, the higher the score.<br><br>For example: <strong>mild sycophancy</strong> (strength 1) happening on every single turn of a 20-turn conversation would have a mean intensity score of <strong>1.0</strong> (20 grades of strength 1 &divide; 20 turns). Meanwhile, <strong>intense sycophancy</strong> (strength 3) happening only 6 times would score <strong>0.9</strong> (6 grades &times; strength 3 = 18 &divide; 20 turns). This metric captures both frequency <em>and</em> intensity on the y-axis of the charts throughout this page.');
+                }, t);
+                t += 14000;
+
+                // ── After first complete cycle, enter manual mode ──
+                schedule(function() {
+                  enterManualMode();
+                }, t);
+              }
+
+              // Start animation when element scrolls into view
+              var started = false;
+              var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                  if (entry.isIntersecting && !started) {
+                    started = true;
+                    runAnimation();
+                  }
+                });
+              }, { threshold: 0.2 });
+
+              observer.observe(document.getElementById('method-diagram'));
+
+              // Button event listeners
+              document.getElementById('btn-prev').addEventListener('click', function() {
+                if (currentStepIndex > 0) {
+                  showStep(currentStepIndex - 1);
+                }
+              });
+
+              document.getElementById('btn-next').addEventListener('click', function() {
+                if (currentStepIndex < stepDefinitions.length - 1) {
+                  showStep(currentStepIndex + 1);
+                }
+              });
+
+              document.getElementById('btn-replay').addEventListener('click', function() {
+                manualMode = false;
+                document.getElementById('step-controls').style.display = 'none';
+                runAnimation();
+              });
+            })();
+            </script>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BibTeX -->
+    <section class="section" id="BibTeX">
+      <div class="container is-max-desktop content">
+        <h2 class="title">BibTeX</h2>
+        <pre><code>@article{hawriluk-kirgis2026spirals,
+  title={LLM Spirals of Delusion: A Benchmarking Audit Study of AI Chatbot Interfaces},
+  author={Kirgis*, Peter and Hawriluk*, Ben and Feng, Sherrie and Bilimer, Aslan and Paech, Sam and Tufekci, Zeynep},
+  note={* Equal contribution},
+  year={2026}
+}</code></pre>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-8">
+            <div class="content">
+              <p>
+                This website is licensed under a
+                <a rel="license"
+                  href="http://creativecommons.org/licenses/by-sa/4.0/">
+                  Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+                Website template borrowed from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
